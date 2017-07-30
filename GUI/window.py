@@ -38,12 +38,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
 
         if os.path.exists(os.getcwd() + "/.datas/lastArena"):
-        
             with open(os.getcwd() + "/.datas/lastArena",  'rb') as file:
                 unpickler = pickle.Unpickler(file)
                 dico = unpickler.load()
 
             self.setUpBattle(dico["width"] , dico["height"], dico["botList"] )
+
+        else :
+            print("No last battle found!")
         
     def setUpBattle(self, width, height, botList):
         self.tableWidget.clearContents()
