@@ -36,13 +36,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Start the last battle
         """
-        
-        with open(os.getcwd() + "/.datas/lastArena",  'rb') as file:
-            unpickler = pickle.Unpickler(file)
-            dico = unpickler.load()
-        file.close()
 
-        self.setUpBattle(dico["width"] , dico["height"], dico["botList"] )
+        if os.path.exists(os.getcwd() + "/.datas/lastArena"):
+        
+            with open(os.getcwd() + "/.datas/lastArena",  'rb') as file:
+                unpickler = pickle.Unpickler(file)
+                dico = unpickler.load()
+
+            self.setUpBattle(dico["width"] , dico["height"], dico["botList"] )
         
     def setUpBattle(self, width, height, botList):
         self.tableWidget.clearContents()
